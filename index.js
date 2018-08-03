@@ -13,6 +13,10 @@ app.get('/', (req,res)=>{
 	res.render('loggedpage');
 })
 
+app.get('/login', (req,res)=>{
+	res.render('login')
+})
+
 // NEW USER CREATION
 
 app.post('/createUser', (req, res) => {
@@ -25,19 +29,24 @@ app.post('/createUser', (req, res) => {
 })
 // LOGIN
 
-app.post('/login', (req, res) => {
-  store
-    .authenticate({
-      username: req.body.username,
-      password: req.body.password
-    })
-    .then(({ success }) => {
-      if (success){
-      	// res.sendStatus(200)
-      	res.render("loggedpage")
-      } 
-      else res.sendStatus(401)
-    })
+app.post('/authenticate', (req, res) => {
+	console.log("auth hit");
+	res.redirect('/')
+  // store
+  //   .authenticate({
+  //     username: req.body.username,
+  //     password: req.body.password
+  //   })
+  //   .then(({ success }) => {
+  //     if (success){
+  //     	// res.sendStatus(200)
+  //     	res.redirect("/")
+  //     	console.log("succes");
+      	
+  //     } 
+  //     else res.sendStatus(401)
+  //   })
+
 })
 
 // STARTING 
